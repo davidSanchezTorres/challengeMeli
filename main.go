@@ -6,13 +6,13 @@ import (
 	"strings"
 )
 
-func convertListToMatrix(row []string) ([][]string, error) {
+func convertListToMatrix(row []string) ([][]string, int, error) {
 	matrix := [][]string{}
 	for _, base := range row {
 		row := strings.Split(base, "")
 		matrix = append(matrix, row)
 	}
-	return matrix, nil
+	return matrix, len(matrix), nil
 }
 
 func findConsecutive(row []string) int {
@@ -22,10 +22,14 @@ func findConsecutive(row []string) int {
 		if i < len(row)-1 {
 			if row[i] == row[i+1] {
 				countTemp++
+				// fmt.Printf("%s == %s: poicion(%d) asiertos: %d \n", row[i], row[i+1], i, consecutives)
 				if countTemp == 4 {
 					consecutives++
 					countTemp = 0
+					fmt.Println("Encontró en: ", row)
 				}
+			} else {
+				countTemp = 0
 			}
 		}
 	}
@@ -33,36 +37,33 @@ func findConsecutive(row []string) int {
 }
 
 func isMutant(dna []string) (bool, error) {
-	matrix, err := convertListToMatrix(dna)
+	matrix, sizeMatrix, err := convertListToMatrix(dna)
 	if err != nil {
 		return false, errors.New("Error to converter on matrix")
 	}
 	countTotalConsecutive := 0
-	rows := 6
-	columns := 6
-	for i := 0; i < rows; i++ {
+	for i := 0; i < sizeMatrix; i++ {
 		//Horizontales
 		countTotalConsecutive += findConsecutive(matrix[i])
 		//Verticales
 		var column []string
-		for j := 0; j < columns; j++ {
+		for j := 0; j < sizeMatrix; j++ {
 			column = append(column, matrix[j][i])
 		}
 		countTotalConsecutive += findConsecutive(column)
 	}
 
 	// Diagonales hacia abajo
-	totalDiagonalsDown := columns
-	for i := 0; i < rows; i++ {
+	for i := 0; i < sizeMatrix; i++ {
 		jTemp := 0
 		var diagonalDown []string
-		for iDiag := i; iDiag < totalDiagonalsDown; iDiag++ {
+		for iDiag := i; iDiag < sizeMatrix; iDiag++ {
 			diagonalDown = append(diagonalDown, matrix[iDiag][jTemp])
 			jTemp++
 		}
 		jTemp = 0
 		var diagonalUp []string
-		for jDiag := i + 1; jDiag < totalDiagonalsDown; jDiag++ {
+		for jDiag := i + 1; jDiag < sizeMatrix; jDiag++ {
 			diagonalUp = append(diagonalUp, matrix[jTemp][jDiag])
 			jTemp++
 		}
@@ -80,12 +81,14 @@ func isMutant(dna []string) (bool, error) {
 
 func main() {
 	dna := []string{
-		"ATGCGA",
-		"CAGTGC",
-		"TTATGT",
-		"AGAAGG",
-		"CCCCTA",
-		"TCACTG",
+		"ATGCGASP",
+		"CAGGGCSP",
+		"TTATGTOP",
+		"AGAAGGOP",
+		"CCCCTAOP",
+		"TCACTGOP",
+		"TCCCTGSP",
+		"FLACYGSP",
 	}
 	fmt.Println("1111111111")
 	fmt.Println(dna)
