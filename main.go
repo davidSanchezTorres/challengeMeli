@@ -19,14 +19,13 @@ func findConsecutive(row []string) int {
 	var consecutives int
 	countTemp := 1
 	for i := 0; i < len(row); i++ {
-		if i < len(row)-1 {
+		if i < len(row)-1 { // i < len(row) para evitar comparar la última con la siguiente que no existe
 			if row[i] == row[i+1] {
 				countTemp++
-				// fmt.Printf("%s == %s: poicion(%d) asiertos: %d \n", row[i], row[i+1], i, consecutives)
 				if countTemp == 4 {
 					consecutives++
 					countTemp = 0
-					fmt.Println("Encontró en: ", row)
+					// fmt.Println("Encontró en: ", row)
 				}
 			} else {
 				countTemp = 0
@@ -43,32 +42,49 @@ func isMutant(dna []string) (bool, error) {
 	}
 	countTotalConsecutive := 0
 	for i := 0; i < sizeMatrix; i++ {
-		//Horizontales
 		countTotalConsecutive += findConsecutive(matrix[i])
-		//Verticales
-		var column []string
+		//Recorrido para obtener Verticales
+		var rowCount []string
 		for j := 0; j < sizeMatrix; j++ {
-			column = append(column, matrix[j][i])
+			rowCount = append(rowCount, matrix[j][i])
 		}
-		countTotalConsecutive += findConsecutive(column)
-	}
+		countTotalConsecutive += findConsecutive(rowCount)
 
-	// Diagonales hacia abajo
-	for i := 0; i < sizeMatrix; i++ {
+		//Recorrido para obtener diagonales de arriba hacia abajo desde la mitad
 		jTemp := 0
-		var diagonalDown []string
+		rowCount = nil
 		for iDiag := i; iDiag < sizeMatrix; iDiag++ {
-			diagonalDown = append(diagonalDown, matrix[iDiag][jTemp])
+			rowCount = append(rowCount, matrix[iDiag][jTemp])
 			jTemp++
 		}
+		countTotalConsecutive += findConsecutive(rowCount)
+
+		//Recorrido para obtener diagonales de arriba hacia abajo desde uno despupes de la mitad hacia la derecha
 		jTemp = 0
-		var diagonalUp []string
+		rowCount = nil
 		for jDiag := i + 1; jDiag < sizeMatrix; jDiag++ {
-			diagonalUp = append(diagonalUp, matrix[jTemp][jDiag])
+			rowCount = append(rowCount, matrix[jTemp][jDiag])
 			jTemp++
 		}
-		countTotalConsecutive += findConsecutive(diagonalDown)
-		countTotalConsecutive += findConsecutive(diagonalUp)
+		countTotalConsecutive += findConsecutive(rowCount)
+
+		//Recorrido para obtener diagonales de abajo hacia arriba desde la mitad
+		jTemp = 0
+		rowCount = nil
+		for iDiag := (sizeMatrix - 1) - i; iDiag >= 0; iDiag-- {
+			rowCount = append(rowCount, matrix[iDiag][jTemp])
+			jTemp++
+		}
+		countTotalConsecutive += findConsecutive(rowCount)
+
+		//Recorrido para obtener diagonales de abajo hacia arriba desde uno después de la mitad
+		jTemp = i + 1
+		rowCount = nil
+		for iDiag := sizeMatrix - 1; iDiag >= (i + 1); iDiag-- {
+			rowCount = append(rowCount, matrix[iDiag][jTemp])
+			jTemp++
+		}
+		countTotalConsecutive += findConsecutive(rowCount)
 	}
 
 	fmt.Println("countTotalConsecutive:", countTotalConsecutive)
@@ -81,14 +97,12 @@ func isMutant(dna []string) (bool, error) {
 
 func main() {
 	dna := []string{
-		"ATGCGASP",
-		"CAGGGCSP",
-		"TTATGTOP",
-		"AGAAGGOP",
-		"CCCCTAOP",
-		"TCACTGOP",
-		"TCCCTGSP",
-		"FLACYGSP",
+		"ATGCGA",
+		"CAGTGC",
+		"TTATGT",
+		"AGAAGG",
+		"CCCCTA",
+		"TCACTG",
 	}
 	fmt.Println("1111111111")
 	fmt.Println(dna)
