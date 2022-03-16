@@ -3,7 +3,12 @@ package main
 import (
 	"errors"
 	"fmt"
+	"isMutant/handlers"
+	"log"
+	"net/http"
 	"strings"
+
+	"github.com/gorilla/mux"
 )
 
 func convertListToMatrix(row []string) ([][]string, int, error) {
@@ -112,4 +117,11 @@ func main() {
 		fmt.Println("Ocurrió un error")
 	}
 	fmt.Println("Mutante: ", isMutant)
+	mux := mux.NewRouter()
+
+	// Creación de endpoint
+	mux.HandleFunc("/v1/mutant/", handlers.CheckIsMutant).Methods("POST")
+	mux.HandleFunc("/v1/stats/", handlers.GetStats).Methods("GET")
+
+	log.Fatal(http.ListenAndServe(":3000", mux))
 }
