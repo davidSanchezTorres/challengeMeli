@@ -1,7 +1,9 @@
 package utils
 
 import (
+	"errors"
 	"fmt"
+	"regexp"
 	"strings"
 )
 
@@ -9,6 +11,13 @@ func ConvertListToMatrix(row []string) ([][]string, int, error) {
 	matrix := [][]string{}
 	for _, base := range row {
 		row := strings.Split(base, "")
+		var tieneADN = regexp.MustCompile(`[ATCG]`)
+		for _, letter := range row {
+			if !tieneADN.MatchString(letter) {
+				fmt.Printf("Caracter no válido:::: %v \n", letter)
+				return nil, 0, errors.New("the text must contain only a,t,c,g")
+			}
+		}
 		matrix = append(matrix, row)
 	}
 	return matrix, len(matrix), nil
@@ -24,7 +33,7 @@ func findConsecutive(row []string) int {
 				if countTemp == 4 {
 					consecutives++
 					countTemp = 0
-					fmt.Println("Encontró secuencia: ", row)
+					fmt.Println("Encontró secuencia:::: ", row)
 				}
 			} else {
 				countTemp = 1

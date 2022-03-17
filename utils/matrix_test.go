@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestConvertListToMatrix(t *testing.T) {
+func TestCounTSecuen(t *testing.T) {
 	dna1 := []string{"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"}
 	res1 := [][]string{
 		{"A", "T", "G", "C", "G", "A"},
@@ -159,3 +159,8 @@ func TestConvertListToMatrix(t *testing.T) {
 		}
 	}
 }
+
+// go test
+// go test -coverprofile="coverage.out"
+// go tool cover --func=coverage.out
+// go tool cover --html=coverage.out
