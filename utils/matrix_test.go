@@ -57,6 +57,18 @@ func TestConvertListToMatrix(t *testing.T) {
 		{"C", "G", "G", "G", "T", "C", "C", "C", "C"},
 		{"A", "A", "A", "A", "T", "T", "C", "G", "G"},
 	}
+	dna32 := []string{"ATGCGATGT", "TTTGGCGCT", "TTGGGGCCT", "TTCTGTAAC", "CCCCTTTAC", "TTTTCCGAA", "TTGGCCCGA", "CCCCTCCCC", "AAAATTCGG"}
+	res32 := [][]string{
+		{"A", "T", "G", "C", "G", "A", "T", "G", "T"},
+		{"T", "T", "T", "G", "G", "C", "G", "C", "T"},
+		{"T", "T", "G", "G", "G", "G", "C", "C", "T"},
+		{"T", "T", "C", "T", "G", "T", "A", "A", "C"},
+		{"C", "C", "C", "C", "T", "T", "T", "A", "C"},
+		{"T", "T", "T", "T", "C", "C", "G", "A", "A"},
+		{"T", "T", "G", "G", "C", "C", "C", "G", "A"},
+		{"C", "C", "C", "C", "T", "C", "C", "C", "C"},
+		{"A", "A", "A", "A", "T", "T", "C", "G", "G"},
+	}
 	tests := []struct {
 		row               []string
 		matrix            [][]string
@@ -75,6 +87,7 @@ func TestConvertListToMatrix(t *testing.T) {
 		{dna2, res2, 7, false, 1, 2, 1, 0, 0, 0, 4},
 		{dna3, res3, 9, false, 5, 1, 1, 0, 1, 0, 8},
 		{dna31, res31, 9, false, 5, 2, 1, 0, 1, 0, 9},
+		{dna32, res32, 9, false, 6, 2, 1, 0, 1, 0, 10},
 	}
 
 	for _, test := range tests {
