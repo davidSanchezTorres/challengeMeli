@@ -27,7 +27,7 @@ func findConsecutive(row []string) int {
 					fmt.Println("Encontró secuencia: ", row)
 				}
 			} else {
-				countTemp = 0
+				countTemp = 1
 			}
 		}
 	}
