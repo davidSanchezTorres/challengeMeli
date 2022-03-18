@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	matrixFunctions "isMutant/utils"
 )
 
@@ -22,7 +23,7 @@ func (h *Human) IsMutant(dna []string) {
 		countTotalConsecutive += matrixFunctions.CountDownToUp1(matrix, i)
 		countTotalConsecutive += matrixFunctions.CountDownToUp2(matrix, i)
 	}
-
+	fmt.Println("CountTotalConsecutive: ", countTotalConsecutive)
 	if countTotalConsecutive > 1 {
 		h.Mutant = true
 	} else {

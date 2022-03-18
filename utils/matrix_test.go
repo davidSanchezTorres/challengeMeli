@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestCounTSecuen(t *testing.T) {
+func TestCounTSecuenSuccess(t *testing.T) {
 	dna1 := []string{"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"}
 	res1 := [][]string{
 		{"A", "T", "G", "C", "G", "A"},
@@ -14,6 +14,7 @@ func TestCounTSecuen(t *testing.T) {
 		{"C", "C", "C", "C", "T", "A"},
 		{"T", "C", "A", "C", "T", "G"},
 	}
+
 	dna11 := []string{"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TTTTCG"}
 	res11 := [][]string{
 		{"A", "T", "G", "C", "G", "A"},
@@ -91,11 +92,7 @@ func TestCounTSecuen(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		matrix, size, err := ConvertListToMatrix(test.row)
-		if (err != nil) != test.err {
-			t.Errorf("ConvertListToMatrix() error = %v, expected: %v", err, test.err)
-			return
-		}
+		matrix, size, _ := ConvertListToMatrix(test.row)
 		if size != test.size {
 			t.Errorf("Size response incorrect = %v, expected: %v", size, test.size)
 		}
@@ -160,7 +157,33 @@ func TestCounTSecuen(t *testing.T) {
 	}
 }
 
+func TestCounTSecuenErrorRegex(t *testing.T) {
+	dna1Regex := []string{"A", "T", "G", "C", "G", "A"}
+	dna2Regex := []string{"A", "H", "G", "C", "G", "A"}
+	dna3Regex := []string{"A", "G", "*", "C", "G", "A"}
+	dna4Regex := []string{"A", "G", "T", "5", "G", "A"}
+	dna5Regex := []string{"A", "", "T", "C", "G", "A"}
+
+	tests := []struct {
+		row        []string
+		validRegex bool
+	}{
+		{dna1Regex, true},
+		{dna2Regex, false},
+		{dna3Regex, false},
+		{dna4Regex, false},
+		{dna5Regex, false},
+	}
+
+	for _, test := range tests {
+		valid := validateRow(test.row)
+		if valid != test.validRegex {
+			t.Errorf("ValidateRow incorrect = %v, expected: %v ", test.row, valid)
+		}
+	}
+}
+
 // go test
-// go test -coverprofile="coverage.out"
+// go test .\utils\ -coverprofile="coverage.out"
 // go tool cover --func=coverage.out
 // go tool cover --html=coverage.out

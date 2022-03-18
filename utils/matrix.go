@@ -7,16 +7,15 @@ import (
 	"strings"
 )
 
-func ConvertListToMatrix(row []string) ([][]string, int, error) {
+func ConvertListToMatrix(rows []string) ([][]string, int, error) {
 	matrix := [][]string{}
-	for _, base := range row {
+	for _, base := range rows {
+		if len(base) != len(rows) {
+			return nil, 0, errors.New("the matrix must NxN")
+		}
 		row := strings.Split(base, "")
-		var tieneADN = regexp.MustCompile(`[ATCG]`)
-		for _, letter := range row {
-			if !tieneADN.MatchString(letter) {
-				fmt.Printf("Caracter no válido:::: %v \n", letter)
-				return nil, 0, errors.New("the text must contain only a,t,c,g")
-			}
+		if !validateRow(row) {
+			return nil, 0, errors.New("the text must contain only a,t,c,g")
 		}
 		matrix = append(matrix, row)
 	}
@@ -97,4 +96,14 @@ func CountDownToUp2(matrix [][]string, i int) int {
 		jTemp++
 	}
 	return findConsecutive(rowCount)
+}
+
+func validateRow(row []string) bool {
+	var tieneADN = regexp.MustCompile(`[ATCG]`)
+	for _, letter := range row {
+		if !tieneADN.MatchString(letter) {
+			return false
+		}
+	}
+	return true
 }
