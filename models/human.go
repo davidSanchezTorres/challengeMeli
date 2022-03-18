@@ -6,6 +6,7 @@ import (
 )
 
 type Human struct {
+	Dna []string `json:"dna"`
 	Mutant bool `json:"isMutant"`
 }
 
@@ -29,4 +30,10 @@ func (h *Human) IsMutant(dna []string) {
 	} else {
 		h.Mutant = false
 	}
+}
+
+type Stats struct {
+	CountMutantDna int     `json:"count_mutant_dna"`
+	CountHumanDna  int     `json:"count_human_dna"`
+	Ratio          float32 `json:"ratio"`
 }

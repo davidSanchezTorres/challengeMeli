@@ -10,7 +10,7 @@ import (
 
 func CheckIsMutant(rw http.ResponseWriter, r *http.Request) {
 	rw.Header().Set("Content-Type", "application/json")
-	var request models.DnaRequest
+	var request models.Human
 	err := json.NewDecoder(r.Body).Decode(&request)
 	if err != nil {
 		rw.WriteHeader(http.StatusBadRequest)
@@ -28,5 +28,13 @@ func CheckIsMutant(rw http.ResponseWriter, r *http.Request) {
 }
 
 func GetStats(rw http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(rw, "Obtener estadísticas")
+	rw.Header().Set("Content-Type", "application/json")
+	count_mutant_dna, count_human_dna, ratio := db.GetListDNA()
+	stats := &models.Stats{
+		CountMutantDna: count_mutant_dna,
+		CountHumanDna: count_human_dna,
+		Ratio: ratio,
+	}
+	rw.WriteHeader(http.StatusOK)
+	json.NewEncoder(rw).Encode(stats)
 }
