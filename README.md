@@ -48,6 +48,8 @@ _GET_
 ec2-3-18-225-241.us-east-2.compute.amazonaws.com/v1/stats/
 ```
 
+_Comparto la colección de Postman para importación. Nombre de archivo "Mutant collection.postman_collection.json"._
+
 
 ## Ejecutando las pruebas ⚙️
 

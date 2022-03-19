@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "6aadfb17-376f-45ab-ad51-1d26ffc5a42d",
+		"name": "MELI Mutant collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "aws muntant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dna\":[\"ATGCGATGT\", \"TTTGGCGCT\", \"TTGGGGCCT\", \"TTCTGTAAC\", \"CCCCTTTAC\", \"TTTTCCGAA\", \"TTGGCCCGA\", \"CCCCTCCCC\", \"AAAATTCGG6\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "ec2-3-18-225-241.us-east-2.compute.amazonaws.com:3000/v1/mutant/",
+					"host": [
+						"ec2-3-18-225-241",
+						"us-east-2",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"mutant",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "aws stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "ec2-3-18-225-241.us-east-2.compute.amazonaws.com:3000/v1/stats/",
+					"host": [
+						"ec2-3-18-225-241",
+						"us-east-2",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"stats",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
