@@ -183,7 +183,31 @@ func TestCounTSecuenErrorRegex(t *testing.T) {
 	}
 }
 
+func TestCounTSecuenError(t *testing.T) {
+	dna1 := []string{"A*GCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"}
+	dna2 := []string{"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG2"}
+	dna3 := []string{"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG", "TCACTA"}
+	dna4 := []string{"AHTGCG", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"}
+
+	tests := []struct {
+		row []string
+		err bool
+	}{
+		{dna1, true},
+		{dna2, true},
+		{dna3, true},
+		{dna4, true},
+	}
+
+	for _, test := range tests {
+		_, _, err := ConvertListToMatrix(test.row)
+		if (err != nil) && !test.err {
+			t.Errorf("Error converting to array = %v, expected: %v", (err != nil), test.err)
+		}
+	}
+}
+
 // go test
-// go test .\utils\ -coverprofile="coverage.out"
+// go test -coverprofile="coverage.out"
 // go tool cover --func=coverage.out
 // go tool cover --html=coverage.out

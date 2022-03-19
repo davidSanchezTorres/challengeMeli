@@ -17,7 +17,7 @@ func Routes() *mux.Router {
 }
 
 //ServerListener Creacion de servidor
-func ServerListener(port string)  {
+func ServerListener(port string) {
 	fmt.Println("Server running on port", port)
 	log.Fatal(http.ListenAndServe(":"+port, Routes()))
 }
