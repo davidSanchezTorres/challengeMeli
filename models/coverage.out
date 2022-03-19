@@ -1,8 +1,0 @@
-mode: set
-isMutant/models/human.go:15.40,17.16 2 1
-isMutant/models/human.go:20.2,21.34 2 1
-isMutant/models/human.go:29.2,30.31 2 1
-isMutant/models/human.go:17.16,19.3 1 1
-isMutant/models/human.go:21.34,28.3 6 1
-isMutant/models/human.go:30.31,32.3 1 1
-isMutant/models/human.go:32.8,34.3 1 1
