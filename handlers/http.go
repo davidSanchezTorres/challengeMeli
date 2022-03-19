@@ -34,8 +34,8 @@ func GetStats(rw http.ResponseWriter, r *http.Request) {
 	countMutantDna, countHumanDna, ratio := db.GetListDNA()
 	stats := &models.Stats{
 		CountMutantDna: countMutantDna,
-		CountHumanDna: countHumanDna,
-		Ratio: ratio,
+		CountHumanDna:  countHumanDna,
+		Ratio:          ratio,
 	}
 	rw.WriteHeader(http.StatusOK)
 	json.NewEncoder(rw).Encode(stats)

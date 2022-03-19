@@ -1,0 +1,14 @@
+# github.com/davecgh/go-spew v1.1.0
+## explicit
+# github.com/gomodule/redigo v1.8.8
+## explicit; go 1.16
+github.com/gomodule/redigo/redis
+# github.com/gorilla/mux v1.8.0
+## explicit; go 1.12
+github.com/gorilla/mux
+# github.com/pmezard/go-difflib v1.0.0
+## explicit
+# github.com/stretchr/testify v1.7.1
+## explicit; go 1.13
+# gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
+## explicit
