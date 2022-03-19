@@ -32,18 +32,18 @@ _Con los dos servicios /v1/mutant/ y /v1/stats/_
 
 _Está desplegado en AWS en una instancia gratuita y podrán ser consumidas como se muestra a continuación_
 
+_POST_
 ```
-POST
-
 ec2-3-18-225-241.us-east-2.compute.amazonaws.com/v1/mutant/
-
+```
+```
 {
     "dna":["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
 }
 ```
 
-```
-GET 
+_GET_
+``` 
 ec2-3-18-225-241.us-east-2.compute.amazonaws.com/v1/stats/
 ```
 
