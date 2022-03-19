@@ -57,7 +57,7 @@ _Ejemplo de guardado en base de datos_
 _Clave-Valor_
 _(ATGCGA+CAGTGC+TTATGT+AGAAGG+CCCCTA+TCACTG+ true)_
 
-_Se guarda 1 por and ya que la clave es la secuencia y por lo tanto no puede ser repetida_
+_Se guarda 1 por ADN ya que la clave es la secuencia y por lo tanto no puede ser repetida_
 
 ## Ejecutando las pruebas ⚙️
 
