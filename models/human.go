@@ -5,11 +5,13 @@ import (
 	matrixFunctions "isMutant/utils"
 )
 
+//Human Objeto persona
 type Human struct {
 	Dna []string `json:"dna"`
 	Mutant bool `json:"isMutant"`
 }
 
+//IsMutant Método de Persona paa identificar si es mutante o no
 func (h *Human) IsMutant(dna []string) {
 	matrix, sizeMatrix, err := matrixFunctions.ConvertListToMatrix(dna)
 	if err != nil {
@@ -32,6 +34,7 @@ func (h *Human) IsMutant(dna []string) {
 	}
 }
 
+//Stats Objeto para las estadísticas
 type Stats struct {
 	CountMutantDna int     `json:"count_mutant_dna"`
 	CountHumanDna  int     `json:"count_human_dna"`

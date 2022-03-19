@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+//ConvertListToMatrix convierte una lista de string en una matriz
 func ConvertListToMatrix(rows []string) ([][]string, int, error) {
 	matrix := [][]string{}
 	for _, base := range rows {
@@ -42,10 +43,12 @@ func findConsecutive(row []string) int {
 	return consecutives
 }
 
+//CountHorizontal Cuenta las secuencias de forma horizontal
 func CountHorizontal(row []string) int {
 	return findConsecutive(row)
 }
 
+//CountVertical Cuenta las secuencias de form vertical
 func CountVertical(matrix [][]string, i int) int {
 	var rowCount []string
 	for j := 0; j < len(matrix); j++ {
@@ -54,7 +57,7 @@ func CountVertical(matrix [][]string, i int) int {
 	return findConsecutive(rowCount)
 }
 
-//Recorrido para obtener diagonales de arriba hacia abajo desde la mitad
+//CountUpToDown1 Recorrido para obtener diagonales de arriba hacia abajo desde la mitad
 func CountUpToDown1(matrix [][]string, i int) int {
 	jTemp := 0
 	var rowCount []string
@@ -65,7 +68,7 @@ func CountUpToDown1(matrix [][]string, i int) int {
 	return findConsecutive(rowCount)
 }
 
-//Recorrido para obtener diagonales de arriba hacia abajo desde uno despupes de la mitad hacia la derecha
+//CountUpToDown2 Recorrido para obtener diagonales de arriba hacia abajo desde uno despupes de la mitad hacia la derecha
 func CountUpToDown2(matrix [][]string, i int) int {
 	jTemp := 0
 	var rowCount []string
@@ -76,7 +79,7 @@ func CountUpToDown2(matrix [][]string, i int) int {
 	return findConsecutive(rowCount)
 }
 
-//Recorrido para obtener diagonales de abajo hacia arriba desde la mitad
+//CountDownToUp1 Recorrido para obtener diagonales de abajo hacia arriba desde la mitad
 func CountDownToUp1(matrix [][]string, i int) int {
 	jTemp := 0
 	var rowCount []string
@@ -87,7 +90,7 @@ func CountDownToUp1(matrix [][]string, i int) int {
 	return findConsecutive(rowCount)
 }
 
-//Recorrido para obtener diagonales de abajo hacia arriba desde uno después de la mitad
+//CountDownToUp2 Recorrido para obtener diagonales de abajo hacia arriba desde uno después de la mitad
 func CountDownToUp2(matrix [][]string, i int) int {
 	jTemp := i + 1
 	var rowCount []string

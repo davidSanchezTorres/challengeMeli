@@ -9,6 +9,7 @@ import (
 
 var pool = newPool()
 
+//CreateDNA Guarda un nuevo DNA en la base de datos
 func CreateDNA(dna []string, isMutant bool) {
 	client := pool.Get()
 	defer client.Close()
@@ -24,6 +25,7 @@ func CreateDNA(dna []string, isMutant bool) {
 	}
 }
 
+//GetListDNA Obtiene la lista de DNAs
 func GetListDNA() (int, int, float32) {
 	client := pool.Get()
 	defer client.Close()
@@ -59,6 +61,9 @@ func GetListDNA() (int, int, float32) {
 	}
 	fmt.Printf("%v son mutantes y %v no lo son", isMutant, notMutant)
 	var ratio float32
+	if (float32(isMutant)+float32(notMutant)) == 0 {
+		return 0, 0, 0	
+	}
 	ratio = float32(isMutant)/(float32(isMutant)+float32(notMutant)) 
 	return isMutant, (isMutant+notMutant), ratio
 }

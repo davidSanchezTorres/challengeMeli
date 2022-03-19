@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+//CheckIsMutant método que recibe el dna
 func CheckIsMutant(rw http.ResponseWriter, r *http.Request) {
 	rw.Header().Set("Content-Type", "application/json")
 	var request models.Human
@@ -27,12 +28,13 @@ func CheckIsMutant(rw http.ResponseWriter, r *http.Request) {
 	}
 }
 
+//GetStats método que recibe retorna la lista
 func GetStats(rw http.ResponseWriter, r *http.Request) {
 	rw.Header().Set("Content-Type", "application/json")
-	count_mutant_dna, count_human_dna, ratio := db.GetListDNA()
+	countMutantDna, countHumanDna, ratio := db.GetListDNA()
 	stats := &models.Stats{
-		CountMutantDna: count_mutant_dna,
-		CountHumanDna: count_human_dna,
+		CountMutantDna: countMutantDna,
+		CountHumanDna: countHumanDna,
 		Ratio: ratio,
 	}
 	rw.WriteHeader(http.StatusOK)
