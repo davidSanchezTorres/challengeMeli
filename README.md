@@ -36,6 +36,7 @@ _POST_
 ```
 ec2-3-18-225-241.us-east-2.compute.amazonaws.com/v1/mutant/
 ```
+Body
 ```
 {
     "dna":["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
