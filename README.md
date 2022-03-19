@@ -50,6 +50,13 @@ ec2-3-18-225-241.us-east-2.compute.amazonaws.com/v1/stats/
 
 _Comparto la colección de Postman para importación. Nombre de archivo "Mutant collection.postman_collection.json"._
 
+_Los datos serán guardados en la base de datos Redis. La clave es el AND y el valor true o false según corresponda si es mutante o no._
+
+_Ejemplo de guardado en base de datos_
+
+_ATGCGA+CAGTGC+TTATGT+AGAAGG+CCCCTA+TCACTG+ true_
+
+_Se guarda 1 por and ya que la clave es la secuencia y por lo tanto no puede ser repetida_
 
 ## Ejecutando las pruebas ⚙️
 
