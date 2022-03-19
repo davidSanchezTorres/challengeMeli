@@ -55,7 +55,7 @@ _Los datos serán guardados en la base de datos Redis. La clave es el AND y el v
 _Ejemplo de guardado en base de datos_
 
 _Clave-Valor_
-_ATGCGA+CAGTGC+TTATGT+AGAAGG+CCCCTA+TCACTG+ true_
+_(ATGCGA+CAGTGC+TTATGT+AGAAGG+CCCCTA+TCACTG+ true)_
 
 _Se guarda 1 por and ya que la clave es la secuencia y por lo tanto no puede ser repetida_
 
